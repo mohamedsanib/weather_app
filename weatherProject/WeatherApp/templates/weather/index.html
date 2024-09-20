@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Protest+Guerrilla&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=SUSE:wght@100..800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+</head>
+
+<body>
+    <main>
+        <div class="main_top">
+            <p class="city_name">{{CITY}}</p>
+            <p class="discription">{{desc}}</p>
+        </div>
+
+        <div class="main_center">
+            <p class="temp">{{tem}}<sup>º</sup></p>
+            {% comment %} <img src="https://openweathermap.org/img/w/{{img}}.png"  alt="weather-icon" class="weather_img" /> {% endcomment %}
+            <img src="{% static 'images/weather-app.png'%}"  alt="weather-icon" class="weather_img" />
+
+            <div class="wind_humid_box">
+                <div >
+                    <p class="wh-prop">Wind</p>
+                    <p class="wh-val">{{wind}} km/h</p>
+                </div>
+
+                <div >
+                    <p class="wh-prop">Humidity</p>
+                    <p class="wh-val">{{hum}}%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main_down">
+            <p>{{date}}</p>
+            <form class="search_box" method="POST">
+                {% csrf_token %}
+                <input type="text" name="city" id="" placeholder="Search City"/>
+                <button class="btn-search" type="submit">
+                    Search
+                </button>
+            </form>
+        </div>
+        <nav>
+            <img src="{% static "images/home.png" %}" alt="" class="nav_img" />
+            <img src="{% static "images/search.png" %}" alt="" class="nav_img" id="search_img"/>
+            <img src="{% static "images/more.png" %}" alt="" class="nav_img" />
+            <img src="{% static "images/profile.png" %}" alt="" class="nav_img" />
+        </nav>
+    </main>
+</body>
+<script src="{% static "js/main.js" %}"></script>
+
+</html>
